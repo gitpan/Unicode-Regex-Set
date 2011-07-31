@@ -1,7 +1,7 @@
 use Test;
 use strict;
 use warnings;
-BEGIN { plan tests => 43 };
+BEGIN { plan tests => 49 };
 
 use Unicode::Regex::Set qw(parse);
 ok(1); # If we made it this far, we're ok.
@@ -147,4 +147,23 @@ ok(testregex('[[ace][bdf] - [abc][def]]'),
 
 ok(testregex('[[ace][bdf] - [abc][df]]'),
 	 "e");
+
+ok(testregex('[\p{Latin} - [\p{Upper} - PERL]]'),
+	 "ELPR$lower");
+
+ok(testregex('[A-Z [a-z - aeiou]]'),
+	 $upper.'bcdfghjklmnpqrstvwxyz');
+
+ok(testregex('[A-Za-z - [a-z - aeiou]]'),
+	 $upper.'aeiou');
+
+ok(testregex('[^^a]'),
+	 'a');
+
+ok(testregex('[^^a]'),
+	 'a');
+
+ok(testregex('[ ^^a]'),
+	 "$digit$upper".'bcdefghijklmnopqrstuvwxyz'.$space
+	.'!"#$%&\'()*+,-./:;<=>?@[\]_`{|}~');
 

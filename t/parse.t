@@ -2,7 +2,7 @@
 use Test;
 use strict;
 use warnings;
-BEGIN { plan tests => 46 };
+BEGIN { plan tests => 57 };
 
 use Unicode::Regex::Set qw(parse);
 ok(1); # If we made it this far, we're ok.
@@ -149,3 +149,35 @@ ok(parse('[0\c[]'),
 ok(parse('[\c]\c\]'),
 	'[\c]\c\]');
 
+ok(parse('[\x00-\x7F - [:gc=Lu:] A-Z]'),
+	'(?:(?![[:gc=Lu:]A-Z])[\x00-\x7F])');
+
+ok(parse('[\x00-\x7F - [:^gc=Lu:] A-Z]'),
+	'(?:(?![[:^gc=Lu:]A-Z])[\x00-\x7F])');
+
+ok(parse('[\x00-\x7F - [:gc:Lu:] A-Z]'),
+	'(?:(?![[:gc:Lu:]A-Z])[\x00-\x7F])');
+
+ok(parse('[\x00-\x7F - [:^gc:Lu:] A-Z]'),
+	'(?:(?![[:^gc:Lu:]A-Z])[\x00-\x7F])');
+
+ok(parse('[\x00-\x7F - \p{gc=Lu} A-Z]'),
+	'(?:(?![\p{gc=Lu}A-Z])[\x00-\x7F])');
+
+ok(parse('[\x00-\x7F - \p{^gc=Lu} A-Z]'),
+	'(?:(?![\p{^gc=Lu}A-Z])[\x00-\x7F])');
+
+ok(parse('[\x00-\x7F - \p{gc:Lu} A-Z]'),
+	'(?:(?![\p{gc:Lu}A-Z])[\x00-\x7F])');
+
+ok(parse('[\x00-\x7F - \p{^gc:Lu} A-Z]'),
+	'(?:(?![\p{^gc:Lu}A-Z])[\x00-\x7F])');
+
+ok(parse('[^^a]'),
+	'(?:(?![^a])(?s:.))');
+
+ok(parse('[^ ^a]'),
+	'(?:(?![^a])(?s:.))');
+
+ok(parse('[ ^^a]'),
+	'[^^a]');

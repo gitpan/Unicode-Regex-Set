@@ -13,7 +13,7 @@ require Exporter;
 @EXPORT_OK = qw(parse maketree tostring);
 @EXPORT    = ();
 
-$VERSION = '0.02';
+$VERSION = '0.03';
 $PACKAGE = __PACKAGE__;
 
 use constant TRUE  => 1;
@@ -73,7 +73,7 @@ sub maketree {
 	    }
 
 	    # beginning of a group
-	    if (s/^\[  (?! \: [^\[\]\:]+ \:\] )//x) {
+	    if (s/^\[  (?! \: [^\[\]]+ \:\] )//x) {
 		if ($cur->{op} eq '&' && !$cur->{follow}) {
 		    $cur = $cur->{parent};
 		}
@@ -174,7 +174,7 @@ sub maketree {
 		    \\[pPN]\{ [^{}]* \}
 		  | \\c?(?s:.)
 		  | [^\s\[\]]
-		  | \[\: [^\[\]\:]+ \:\]
+		  | \[\: [^\[\]]+ \:\]
 			)+)//x)
 	    {
 		my $lit = $1;
@@ -333,12 +333,10 @@ and converts it into a regular expression in Perl (returned as a string).
 
 SADAHIRO Tomoyuki <SADAHIRO@cpan.org>
 
-  http://homepage1.nifty.com/nomenclator/perl/
+Copyright(C) 2003, SADAHIRO Tomoyuki. Japan. All rights reserved.
 
-  Copyright(C) 2003-2003, SADAHIRO Tomoyuki. Japan. All rights reserved.
-
-  This library is free software; you can redistribute it
-  and/or modify it under the same terms as Perl itself.
+This module is free software; you can redistribute it
+and/or modify it under the same terms as Perl itself.
 
 =head1 SEE ALSO
 

@@ -1,4 +1,4 @@
-Unicode/Regex/Set version 0.02
+Unicode/Regex/Set version 0.03
 ===============================
 
 NAME
@@ -23,14 +23,11 @@ To install this module type the following:
    make test
    make install
 
-COPYRIGHT AND LICENCE
+COPYRIGHT AND LICENSE
 
 SADAHIRO Tomoyuki <SADAHIRO@cpan.org>
 
-  http://homepage1.nifty.com/nomenclator/perl/
+Copyright(C) 2003, SADAHIRO Tomoyuki. Japan. All rights reserved.
 
-  Copyright(C) 2003-2003, SADAHIRO Tomoyuki. Japan. All rights reserved.
-
-  This library is free software; you can redistribute it
-  and/or modify it under the same terms as Perl itself.
-
+This module is free software; you can redistribute it and/or
+modify it under the same terms as Perl itself.
