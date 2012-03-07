@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:               Unicode-Regex-Set
-version:            0.03
+version:            0.04
 abstract:           Subtraction and Intersection of Character Sets in Unicode Regular Expressions
 author:
     - SADAHIRO Tomoyuki <SADAHIRO@cpan.org>
@@ -10,7 +10,12 @@ configure_requires:
     ExtUtils::MakeMaker:  0
 build_requires:
     ExtUtils::MakeMaker:  0
-requires:  {}
+requires:
+    Carp:      0
+    constant:  0
+    Exporter:  0
+    strict:    0
+    warnings:  0
 no_index:
     directory:
         - t

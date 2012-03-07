@@ -5,16 +5,15 @@ require 5.008;
 use strict;
 use warnings;
 use Carp;
-use vars qw($VERSION $PACKAGE @ISA @EXPORT @EXPORT_OK);
 
 require Exporter;
-@ISA = qw(Exporter);
+our @ISA = qw(Exporter);
 
-@EXPORT_OK = qw(parse maketree tostring);
-@EXPORT    = ();
+our @EXPORT_OK = qw(parse maketree tostring);
+our @EXPORT    = ();
 
-$VERSION = '0.03';
-$PACKAGE = __PACKAGE__;
+our $VERSION = '0.04';
+our $PACKAGE = __PACKAGE__;
 
 use constant TRUE  => 1;
 use constant FALSE => '';
@@ -249,7 +248,8 @@ __END__
 
 =head1 NAME
 
-Unicode::Regex::Set - Subtraction and Intersection of Character Sets in Unicode Regular Expressions
+Unicode::Regex::Set - Subtraction and Intersection of Character Sets
+in Unicode Regular Expressions
 
 =head1 SYNOPSIS
 

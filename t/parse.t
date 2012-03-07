@@ -1,11 +1,18 @@
 
-use Test;
 use strict;
 use warnings;
-BEGIN { plan tests => 57 };
+BEGIN { $| = 1; print "1..57\n"; }
 
 use Unicode::Regex::Set qw(parse);
-ok(1); # If we made it this far, we're ok.
+
+my $count = 0;
+sub ok ($;$) {
+    my $r = shift;
+    my $p = @_ == 0 ? $r : $r eq shift;
+    print $p ? "ok" : "not ok", ' ', ++$count, "\n";
+}
+
+ok(1);
 
 ok(parse('[A-Z]'),
 	 '[A-Z]');
@@ -17,8 +24,7 @@ ok(parse('[a-z A-Z]'),
 
 # reference -> modification
 
-use vars qw($regex);
-$regex = '[A-Z]foobar';
+my $regex = '[A-Z]foobar';
 
 ok(parse(\$regex), '[A-Z]');
 
@@ -181,3 +187,4 @@ ok(parse('[^ ^a]'),
 
 ok(parse('[ ^^a]'),
 	'[^^a]');
+

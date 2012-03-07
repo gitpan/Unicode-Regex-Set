@@ -1,21 +1,26 @@
-use Test;
+
 use strict;
 use warnings;
-BEGIN { plan tests => 49 };
+BEGIN { $| = 1; print "1..49\n"; }
 
 use Unicode::Regex::Set qw(parse);
-ok(1); # If we made it this far, we're ok.
 
-use vars qw(@char $digit $upper $lower $space $punct);
+my $count = 0;
+sub ok ($;$) {
+    my $r = shift;
+    my $p = @_ == 0 ? $r : $r eq shift;
+    print $p ? "ok" : "not ok", ' ', ++$count, "\n";
+}
 
-$digit = join '', "0".."9";
-$upper = join '', "A".."Z";
-$lower = join '', "a".."z";
-$space = "\n\r\t\f\ ";
-$punct = '!"#$%&\'()*+,-./:;<=>?@[\]^_`{|}~';
+ok(1);
 
+my $digit = join '', "0".."9";
+my $upper = join '', "A".."Z";
+my $lower = join '', "a".."z";
+my $space = "\n\r\t\f\ ";
+my $punct = '!"#$%&\'()*+,-./:;<=>?@[\]^_`{|}~';
 
-@char = split //, "$digit$upper$lower$space$punct";
+my @char = split //, "$digit$upper$lower$space$punct";
 
 sub testregex {
     my $pat = parse(shift);
